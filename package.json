@@ -1,0 +1,23 @@
+{
+  "name": "elm-style-elements-tryout",
+  "version": "0.1.0",
+  "description": "Let's see what the fuzz is all about",
+  "main": "index.html",
+  "scripts": {
+    "start": "elm reactor -p 8081",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mfeineis/elm-style-elements-tryout.git"
+  },
+  "author": "Martin Feineis",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mfeineis/elm-style-elements-tryout/issues"
+  },
+  "homepage": "https://github.com/mfeineis/elm-style-elements-tryout#readme",
+  "devDependencies": {
+    "elm": "^0.18.0"
+  }
+}
