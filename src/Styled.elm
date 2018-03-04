@@ -1,38 +1,35 @@
 module Styled exposing ( view )
 
 import Color
-import Element exposing (Device, column, el, row, text)
-import Element.Attributes exposing (height, fill, padding, spacing, width)
+import Element exposing (Device, Element, column, el, fill, height, padding, row, spacing, text, width)
+import Element.Background as Background
+import Element.Font as Font
 import Html exposing (Html)
-import Style
-import Style.Color
-import Style.Font as Font
-import Style.Scale as Scale
 
 
-scale =
-    Scale.modular 16 1.618
+scaled : Int -> Int
+scaled =
+    Element.modular 16 1.618 >> round
 
 
-type MyStyles
-    = Title
-    | MyRowStyle
-    | MyStyle
-
-
-stylesheet =
-    Style.styleSheet
-        [ Style.style Title
-            [ Style.Color.background Color.black
-            , Style.Color.text Color.darkGrey
-            , Font.size (scale 1)
-            ]
-        , Style.style MyStyle
-            [ Style.Color.background Color.blue
-            , Style.Color.text Color.white
-            , Font.size (scale 2)
-            ]
+myText : String -> Element msg
+myText label =
+    el
+        [ Background.color Color.blue
+        , Font.color Color.white
+        , Font.size (scaled 2)
         ]
+        (text label)
+
+
+myTitle : String -> Element msg
+myTitle label =
+    el
+        [ Background.color Color.black
+        , Font.color Color.darkGrey
+        , Font.size (scaled 1)
+        ]
+        (text label)
 
 
 view : { a | device : Device, who : String } -> Html msg
@@ -44,9 +41,9 @@ view { device, who } =
             else
                 row
     in
-    Element.layout stylesheet <|
-        myLayout MyRowStyle [ padding 10, spacing 7, width fill ]
-            [ el Title [] (text ("Hello " ++ who ++ "!"))
-            , el MyStyle [] (text "#1")
-            , el MyStyle [] (text "#2")
+    Element.layout [] <|
+        myLayout [ padding 10, spacing 7, width fill ]
+            [ myTitle ("Hello " ++ who ++ "!")
+            , myText "#1"
+            , myText "#2"
             ]
